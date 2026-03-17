@@ -1,43 +1,51 @@
-# Optimisation des Régimes Alimentaires
+# Menu optimization using graphs (networks)
 
-## Description du projet
+## Description
 
-Ce projet de recherche opérationnelle se concentre sur la **gestion des régimes alimentaires** dans les environnements hôteliers et autres lieux à forte fréquentation.
-L’objectif est de proposer une **solution efficace et inclusive** pour :
+This project focuses on **menu optimization** using graph-based modeling.
+It leverages graph theory to represent relationships between different menu items and to find optimal combinations based on defined constraints.
 
-* Répondre aux besoins alimentaires variés des clients,
-* **Minimiser** le nombre de plats proposés,
-* Assurer une **diversité suffisante** pour satisfaire toutes les contraintes.
+The implementation is built using **NetworkX**, a powerful Python library for the creation, manipulation, and analysis of complex networks.
 
-Nous considérons **8 régimes alimentaires différents**, chacun présentant des **incompatibilités spécifiques**. Ces restrictions sont prises en compte lors de la planification des repas, afin de garantir que chaque client trouve un menu adapté.
+## Objectives
 
-## Méthodologie
+* Model menu items as a graph structure
+* Represent relationships (compatibility, constraints, or transitions) between items
+* Apply graph algorithms to optimize menu composition
+* Explore how graph theory can be applied to real-world decision problems
 
-Pour résoudre ce problème, nous avons :
+## Features
 
-* Modélisé les **incompatibilités entre régimes** sous forme de graphe,
-* Utilisé la **coloration des graphes** pour minimiser le nombre de plats nécessaires,
-* Visualisé les résultats grâce à **NetworkX** et **Matplotlib**,
-* Implémenté l’ensemble dans un **notebook Jupyter** pour une meilleure interactivité.
+* Graph-based representation of menu items
+* Use of graph algorithms for optimization
+* Flexible structure for experimenting with different constraints
+* Educational implementation of applied graph theory
 
-## Technologies utilisées
+## Tech Stack
 
-* **Python 3**
-* **NetworkX** → Modélisation et traitement des graphes
-* **Matplotlib** → Visualisation des graphes et des solutions
-* **Jupyter Notebook** → Développement et exécution du projet
+* Python
+* NetworkX – graph modeling and algorithms
+* Matplotlib (optional) – graph visualization
 
-## Résultats attendus
+## Example Use Case
 
-* Nombre minimal de plats nécessaires pour couvrir tous les régimes,
-* Visualisation d’un graphe coloré représentant les incompatibilités et leur résolution,
-* Preuve de faisabilité pour une planification alimentaire inclusive et optimisée.
+* Nodes represent menu items (e.g., dishes, drinks, desserts)
+* Edges represent compatibility or constraints between items
+* Graph algorithms are used to:
 
-## Perspectives
+  * Find optimal combinations
+  * Avoid incompatible pairings
+  * Suggest balanced menus
 
-Ce projet fournit une **première approche opérationnelle** pour la gestion des régimes alimentaires. Des extensions possibles incluent :
+## Learning Outcomes
+* Understanding graph theory concepts in practice
+* Using NetworkX for real-world modeling
+* Applying algorithmic thinking to optimization problems
 
-* La prise en compte de **nouvelles contraintes** (budget, disponibilité des ingrédients, saisonnalité),
-* L’intégration dans une **application de gestion hôtelière** complète,
-* L’exploration d’algorithmes plus avancés (programmation linéaire, heuristiques).
+## Contributors
+- Touba CISSE
+- Yaye Fatou SARR
 
+## License
+
+This project is licensed under the MIT License.
