@@ -1,51 +1,98 @@
-# Menu optimization using graphs (networks)
+# Menu Optimization using Graph Coloring — NetworkX
 
-## Description
+<div align="center">
 
-This project focuses on **menu optimization** using graph-based modeling.
-It leverages graph theory to represent relationships between different menu items and to find optimal combinations based on defined constraints.
+![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=flat-square&logo=python&logoColor=white)
+![NetworkX](https://img.shields.io/badge/NetworkX-graph%20theory-1F77B4?style=flat-square)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-visualisation-11557C?style=flat-square)
+![Jupyter](https://img.shields.io/badge/Jupyter-notebook-F37626?style=flat-square&logo=jupyter&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-The implementation is built using **NetworkX**, a powerful Python library for the creation, manipulation, and analysis of complex networks.
+**Applying graph coloring to find the minimum number of dishes required to satisfy all dietary requirements simultaneously — with no incompatible pairings.**
 
-## Objectives
+</div>
 
-* Model menu items as a graph structure
-* Represent relationships (compatibility, constraints, or transitions) between items
-* Apply graph algorithms to optimize menu composition
-* Explore how graph theory can be applied to real-world decision problems
+## Problem Statement
 
-## Features
+Hotels and high-traffic venues must accommodate a wide variety of dietary requirements: gluten-free, vegan, lactose-free, nut-free, egg-free, fish-free, red-meat-free, and more.
 
-* Graph-based representation of menu items
-* Use of graph algorithms for optimization
-* Flexible structure for experimenting with different constraints
-* Educational implementation of applied graph theory
+The central question: **what is the minimum number of distinct dishes needed to cover all dietary regimes, given that some combinations are incompatible?**
 
-## Tech Stack
+This is a direct application of the **graph coloring problem** — a classic NP-hard combinatorial optimisation problem — where:
+- Each **node** represents a dietary regime
+- Each **edge** connects two regimes that **cannot be served by the same dish** (incompatibility)
+- The **minimum number of colours** needed to colour the graph = the **minimum number of dishes** required
 
-* Python
-* NetworkX – graph modeling and algorithms
-* Matplotlib (optional) – graph visualization
+## Approach
 
-## Example Use Case
+### Modelling
 
-* Nodes represent menu items (e.g., dishes, drinks, desserts)
-* Edges represent compatibility or constraints between items
-* Graph algorithms are used to:
+8 dietary regimes are modelled as nodes in an undirected graph:
 
-  * Find optimal combinations
-  * Avoid incompatible pairings
-  * Suggest balanced menus
+```
+Sans gluten · Végétalien · Sans lactose · Sans fruits à coque
+Sans produits laitiers · Sans œufs · Sans poisson · Sans viande rouge
+```
 
-## Learning Outcomes
-* Understanding graph theory concepts in practice
-* Using NetworkX for real-world modeling
-* Applying algorithmic thinking to optimization problems
+Edges are added between regimes that are **mutually compatible** (can be served by the same dish). Incompatible pairs have no edge — meaning they require separate dishes.
+
+### Algorithm
+
+`nx.greedy_color()` from NetworkX applies a **greedy graph coloring algorithm** that assigns colours to nodes such that no two adjacent nodes share the same colour, while minimising the total number of colours used.
+
+```python
+# Core of the solution
+colors = nx.greedy_color(G)
+num_dishes = max(colors.values()) + 1
+print(f"Minimum number of dishes required: {num_dishes}")
+```
+
+Each colour = one dish category that satisfies a group of compatible regimes.
+
+### Visualisation
+
+The graph is rendered with Matplotlib at two stages:
+1. **Before coloring** — plain graph showing regime nodes and compatibility edges
+2. **After coloring** — colour-coded graph where each colour group identifies regimes that a single dish can cover
+
+## Project Structure
+
+```
+optimization-with-networkx/
+├── menu_optimization_using_graphs.ipynb   # Full implementation + visualisations
+├── diapos.pdf                             # Project presentation slides
+├── LICENSE
+└── README.md
+```
+
+## Setup & Usage
+
+**Prerequisites:** Python 3.x, Jupyter
+
+```bash
+# Install dependencies
+pip install networkx matplotlib jupyter
+
+# Launch the notebook
+jupyter notebook menu_optimization_using_graphs.ipynb
+```
+
+Run all cells in order — the notebook walks through problem modelling, graph construction, coloring, and result interpretation.
+
+## Key Concepts Demonstrated
+
+| Concept | Application |
+|---|---|
+| Graph modelling | Dietary regimes as nodes, compatibility as edges |
+| Graph coloring problem | Minimum dish count = chromatic number |
+| Greedy coloring algorithm | `nx.greedy_color()` — polynomial-time approximation |
+| Combinatorial optimisation | Real-world resource minimisation problem |
+| Graph visualisation | Matplotlib rendering of coloured compatibility graphs |
 
 ## Contributors
-- Touba CISSE
-- Yaye Fatou SARR
+
+**Thierno Daouda LY · Touba CISSE · Yaye Fatou SARR**
 
 ## License
 
-This project is licensed under the MIT License.
+MIT License — see [LICENSE](LICENSE) for details.
